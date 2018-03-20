@@ -1,0 +1,4 @@
+---
+# Variables defined for us-central1-a
+instances: test1,test2
+zone: us-central1-a

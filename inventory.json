@@ -1,0 +1,128 @@
+{
+  "10.2.0.2": [
+    "iredmail-1"
+  ], 
+  "10.2.0.6": [
+    "centos-1"
+  ], 
+  "10.2.0.7": [
+    "infra-monitoring-icinga-01"
+  ], 
+  "104.197.39.246": [
+    "infra-monitoring-icinga-01"
+  ], 
+  "35.184.222.15": [
+    "centos-1"
+  ], 
+  "35.226.242.242": [
+    "iredmail-1"
+  ], 
+  "_meta": {
+    "hostvars": {
+      "centos-1": {
+        "ansible_ssh_host": "35.184.222.15", 
+        "gce_description": "", 
+        "gce_id": "6399850905069504487", 
+        "gce_image": "centos-7-v20180129", 
+        "gce_machine_type": "n1-standard-2", 
+        "gce_metadata": {}, 
+        "gce_name": "centos-1", 
+        "gce_network": "vpc-01-devqa", 
+        "gce_private_ip": "10.2.0.6", 
+        "gce_public_ip": "35.184.222.15", 
+        "gce_status": "RUNNING", 
+        "gce_subnetwork": "private-internal", 
+        "gce_tags": [
+          "sandbox"
+        ], 
+        "gce_uuid": "35d3d12d30bfcfa6ca8244c154f2eb591d202c96", 
+        "gce_zone": "us-central1-a"
+      }, 
+      "infra-monitoring-icinga-01": {
+        "ansible_ssh_host": "104.197.39.246", 
+        "gce_description": "", 
+        "gce_id": "8999540917953246594", 
+        "gce_image": "centos-7-v20180227", 
+        "gce_machine_type": "n1-standard-1", 
+        "gce_metadata": {}, 
+        "gce_name": "infra-monitoring-icinga-01", 
+        "gce_network": "vpc-01-devqa", 
+        "gce_private_ip": "10.2.0.7", 
+        "gce_public_ip": "104.197.39.246", 
+        "gce_status": "TERMINATED", 
+        "gce_subnetwork": "private-internal", 
+        "gce_tags": [], 
+        "gce_uuid": "653d4e54d3ab296546c5b9cfa02f1f049d45d604", 
+        "gce_zone": "us-central1-a"
+      }, 
+      "iredmail-1": {
+        "ansible_ssh_host": "35.226.242.242", 
+        "gce_description": "", 
+        "gce_id": "4940824744816540961", 
+        "gce_image": "centos-7-v20180129", 
+        "gce_machine_type": "g1-small", 
+        "gce_metadata": {
+          "ssh-keys": "yomateod:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCxVtzh+a20P8VcqHf++whuZP60epgkoEag3xhAfIrpm7R+4QE3zlNrUH65lJaKSQaQ+q5OdCIYtXl6N1rfDxYAzYK235ievV11bePpkLL1Aq57Drdjp4eed0hieJ3/bbwKrC/Y8iZc3KbEUrUua7ofZeLzk0swhjEpcm9LjgIRO+sj+Pc5gmxfNGa8OiiuSZS/wEO9oN0gu1N5cgoGMVNaY70nHLQtAlL3aYeIjtugNF/gETBiUzVaOsZlreCcbX2kTew6hiyl5C9PLrLBrUBw59A5ydrad4rhwVkFwl6YgRgFldGn1BNlQLs59n+MchYQo9bdWlOEsenPk518BfWkJ7ehcm4qs3Y9vt7lnFEIXVI4Xt5SFhw/Qo6dMOnSv7ZQL320W1+io68nI0NnfBq+GvzD52qcaBZj/xQTqtgK7naUzVGh77Myx0fauOGHynQDS5zdLEfrGkR8XatPw0Yw2+m2mKVm6qgd/tfhDRX46Txf1J0SuYpEn/f6kvNU/AU8ljhwgDZIYJGkTUmU/ccmDKZdJfJcmf5y/RJ1/+24L/zGGDjhQKPCzx7mRdOTO41yALGo+vtSH3ncyCyFy9Kebgdj3paCY2uHr0ohTcEfPUc+tfRBCXf1KOU0/k4odeWITMKcnCA0xV+kJNhns7NihPrAMzbRncyptXdcCFheoQ== yomateod@DESKTOP-SR72DSK"
+        }, 
+        "gce_name": "iredmail-1", 
+        "gce_network": "vpc-01-devqa", 
+        "gce_private_ip": "10.2.0.2", 
+        "gce_public_ip": "35.226.242.242", 
+        "gce_status": "TERMINATED", 
+        "gce_subnetwork": "private-internal", 
+        "gce_tags": [
+          "http-server", 
+          "https-server"
+        ], 
+        "gce_uuid": "af7b60e695476a1717eb605d1e463e5de96ab0be", 
+        "gce_zone": "us-central1-a"
+      }
+    }, 
+    "stats": {
+      "cache_used": false, 
+      "inventory_load_time": 0.3139479160308838
+    }
+  }, 
+  "centos-7-v20180129": [
+    "centos-1", 
+    "iredmail-1"
+  ], 
+  "centos-7-v20180227": [
+    "infra-monitoring-icinga-01"
+  ], 
+  "g1-small": [
+    "iredmail-1"
+  ], 
+  "n1-standard-1": [
+    "infra-monitoring-icinga-01"
+  ], 
+  "n1-standard-2": [
+    "centos-1"
+  ], 
+  "network_vpc-01-devqa": [
+    "centos-1", 
+    "infra-monitoring-icinga-01", 
+    "iredmail-1"
+  ], 
+  "status_running": [
+    "centos-1"
+  ], 
+  "status_terminated": [
+    "infra-monitoring-icinga-01", 
+    "iredmail-1"
+  ], 
+  "tag_http-server": [
+    "iredmail-1"
+  ], 
+  "tag_https-server": [
+    "iredmail-1"
+  ], 
+  "tag_sandbox": [
+    "centos-1"
+  ], 
+  "us-central1-a": [
+    "centos-1", 
+    "infra-monitoring-icinga-01", 
+    "iredmail-1"
+  ]
+}

@@ -1,0 +1,5 @@
+---
+# Google Compute Engine required authentication global variables
+project_id: streaming-platform-devqa
+service_account_email: ansible@streaming-platform-devqa.iam.gserviceaccount.com
+credentials_file: /workspace/.auth/streaming-platform-devqa-1cca969ec515.json

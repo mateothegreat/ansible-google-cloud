@@ -1,0 +1,58 @@
+- name: Create instance(s)
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+    # service_account_email: k8-gcloud@streaming-platform-devqa.iam.gserviceaccount.com
+    service_account_email: ansible@streaming-platform-devqa.iam.gserviceaccount.com
+    # credentials_file: /workspace/.auth/gcp-streaming-platform-devqa-e158812b35a9.json
+    credentials_file: /workspace/.auth/streaming-platform-devqa-1cca969ec515.json
+    project_id: streaming-platform-devqa
+    machine_type: n1-standard-1
+    image: centos-7
+
+  tasks:
+    - name: Launch instances
+      gce:
+          instance_names: "{{ instances }}"
+          machine_type: "{{ machine_type }}"
+          image: "{{ image }}"
+          service_account_email: "{{ service_account_email }}"
+          credentials_file: "{{ credentials_file }}"
+          project_id: "{{ project_id }}"
+          tags: test
+      register: gce
+
+    - name: Wait for SSH to come up
+      wait_for: host={{ item.public_ip }} port=22 delay=10 timeout=60
+      with_items: "{{ gce.instance_data }}"
+
+    - name: Add host to groupname
+      add_host: hostname={{ item.public_ip }} groupname=new_instances
+      with_items: "{{ gce.instance_data }}"
+  
+#   roles:
+
+#     - name: Install lighttpd
+#       apt: pkg=lighttpd state=installed
+#       sudo: True
+
+#     - name: Allow HTTP
+#       local_action: gce_net
+#       args:
+#         fwname: "all-http"
+#         name: "default"
+#         allowed: "tcp:80"
+#         state: "present"
+#         service_account_email: "{{ service_account_email }}"
+#         credentials_file: "{{ credentials_file }}"
+#         project_id: "{{ project_id }}"
+        
+# - name: Manage new instances
+#   hosts: new_instances
+#   connection: ssh
+#   sudo: True
+#   roles:
+#     - base_configuration
+#     - production_server
