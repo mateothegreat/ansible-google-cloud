@@ -1,18 +1,17 @@
----
-# 
-# compute-video-demo-ansible
-# 
-- name: Destroy all demo resources
-  hosts: local
-  gather_facts: False
-  vars_files:
-    - gce_vars/auth
-    - gce_vars/machines
-    - gce_vars/zonea
+- name: Delete instance(s)
+  hosts: localhost
+  connection: local
+  gather_facts: no
 
+  vars:
+    service_account_email: ansible@streaming-platform-devqa.iam.gserviceaccount.com
+    credentials_file: /workspace/.auth/streaming-platform-devqa-1cca969ec515.json
+    project_id: streaming-platform-devqa
+    zone: us-central1-a
+    
   tasks:
 
-    - name: Destroy the instances in the first zone
+    - name: Destroy instances
 
       gce:
         instance_names: "{{ instances }}"
