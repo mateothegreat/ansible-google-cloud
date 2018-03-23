@@ -1,0 +1,45 @@
+# 
+#  http://docs.ansible.com/ansible/latest/list_of_cloud_modules.html
+#  http://docs.ansible.com/ansible/latest/gcdns_record_module.html
+#  http://docs.ansible.com/ansible/latest/gcdns_zone_module.html#gcdns-zone
+# 
+- name: Set up DNS for ingress.streaming-platform.com
+  hosts: 127.0.0.1
+  connection: local
+  gather_facts: False
+
+  tasks:
+        
+    - name: ingress.streaming-platform.com A 35.224.16.183
+      gcdns_record:
+        record: 'ingress.streaming-platform.com'
+        zone: 'streaming-platform.com'
+        type: A
+        ttl: 3600
+        overwrite: true
+        value: '35.224.16.183'
+        
+    - name: test.streaming-platform.com CNAME streaming-platform.com
+      gcdns_record:
+        record: 'test.streaming-platform.com'
+        zone: 'streaming-platform.com'
+        type: CNAME
+        ttl: 3600
+        overwrite: true
+        value: 'ingress.streaming-platform.com.'
+
+    # Create a PTR record
+    # - gcdns_record:
+    #     record: '183.16.224.35.in-addr.arpa'
+    #     zone: '16.224.35.in-addr.arpa'
+    #     type: PTR
+    #     value: 'ingress.streaming-platform.com.'        
+
+    # # Create a TXT record
+    # - gcdns_record:
+    #     record: 'example.com'
+    #     zone: 'streaming-platform.com'
+    #     type: TXT
+    #     record_data:
+    #     - '"v=spf1 include:_spf.google.com -all"'   # A single-string TXT value
+    #     - '"hello " "world"'    # A multi-string TXT value        

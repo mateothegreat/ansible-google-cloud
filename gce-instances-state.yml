@@ -1,6 +1,6 @@
 ---
 # compute-video-demo-ansible
-- name: Set up DNS for ingress.streaming-platform.com
+- name: Manage instance states
   hosts: localhost
 #   connection: local
   gather_facts: False
@@ -10,11 +10,10 @@
 #     - gce_vars/lb
 
   tasks:
-    - name: Allow HTTP traffic
-      gce_net:
-        name: vpc-01-devqa
-        fwname: all-http
-        allowed: tcp:8888
+    - name: "Apply state to instances: {{ NAME }} -> {{ STATE }}"
+      gce:
+        name: "{{ NAME }}"
+        state: "{{ STATE }}"
 
         # Create a 'legacy' Network
         # - name: Create Legacy Network

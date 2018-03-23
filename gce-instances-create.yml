@@ -19,7 +19,8 @@
           service_account_email: "{{ service_account_email }}"
           credentials_file: "{{ credentials_file }}"
           project_id: "{{ project_id }}"
-          tags: test
+          disk_auto_delete: true
+          tags: ansible
       register: gce
 
     - name: Wait for SSH to come up
@@ -29,28 +30,10 @@
     - name: Add host to groupname
       add_host: hostname={{ item.public_ip }} groupname=new_instances
       with_items: "{{ gce.instance_data }}"
-  
-#   roles:
+    
+    - name: Save host data
+      add_host:
+        hostname: "{{ item.public_ip }}"
+        groupname: gce_instances
+      with_items: "{{ gce.instance_data }}"
 
-#     - name: Install lighttpd
-#       apt: pkg=lighttpd state=installed
-#       sudo: True
-
-#     - name: Allow HTTP
-#       local_action: gce_net
-#       args:
-#         fwname: "all-http"
-#         name: "default"
-#         allowed: "tcp:80"
-#         state: "present"
-#         service_account_email: "{{ service_account_email }}"
-#         credentials_file: "{{ credentials_file }}"
-#         project_id: "{{ project_id }}"
-        
-# - name: Manage new instances
-#   hosts: new_instances
-#   connection: ssh
-#   sudo: True
-#   roles:
-#     - base_configuration
-#     - production_server

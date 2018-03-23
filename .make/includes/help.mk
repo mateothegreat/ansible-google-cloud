@@ -53,12 +53,12 @@ guard-%:
 ### Get your external ip
 get/myip: ; curl 'https://api.ipify.org'; echo 
 
-## Output list of submodules & repositories
-dump/submodules: 
+# ## Output list of submodules & repositories
+# dump/submodules: 
 
-	@printf "$(YELLOW)\n%-46s%s\n\n$(BLUE)" "Submodule Name" "Submodule Repository" 
-	@for F in $(MODULES); do	printf "%-45s@%s\n" $$F https://github.com/mateothegreat/$$F | sed -e 's/modules\///g' -e 's/ /./g' -e 's/@/ /' -e 's/-/ /'; done
-	@printf "\n"
+# 	@printf "$(YELLOW)\n%-46s%s\n\n$(BLUE)" "Submodule Name" "Submodule Repository" 
+# 	@for F in $(MODULES); do	printf "%-45s@%s\n" $$F https://github.com/mateothegreat/$$F | sed -e 's/modules\///g' -e 's/ /./g' -e 's/@/ /' -e 's/-/ /'; done
+# 	@printf "\n"
 
 ### Try to curl http & https from $(HOST)
 testing-curl: testing/curlhttp testing/curlhttps
