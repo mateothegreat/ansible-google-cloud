@@ -11,6 +11,13 @@
 [![Clickity click](https://img.shields.io/badge/k8s%20by%20example%20yo-limit%20time-ff69b4.svg?style=flat-square)](https://k8.matthewdavis.io)
 [![Twitter Follow](https://img.shields.io/twitter/follow/yomateod.svg?label=Follow&style=flat-square)](https://twitter.com/yomateod) [![Skype Contact](https://img.shields.io/badge/skype%20id-appsoa-blue.svg?style=flat-square)](skype:appsoa?chat)
 
+# Getting started
+Clone this repo and initialize submodules:
+```bash
+git clone https://github.com/mateothegreat/ansible-google-cloud && cd $_
+git submodule update --init
+```
+
 # Control Google Cloud Platform with ansible by Example
 
 ## Requirements
