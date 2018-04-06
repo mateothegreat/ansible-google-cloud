@@ -1,4 +1,4 @@
-- name: Create instance(s)
+- name: Create instances ("{{ instances }}")
   hosts: localhost
   connection: local
   gather_facts: no
@@ -11,7 +11,7 @@
     image: centos-7
 
   tasks:
-    - name: Launch instances
+    - name: Launch instances ("{{ instances }}")
       gce:
           instance_names: "{{ instances }}"
           machine_type: "{{ machine_type }}"
@@ -23,15 +23,15 @@
           tags: ansible
       register: gce
 
-    - name: Wait for SSH to come up
+    - name: Wait for SSH to come up ("{{ instances }}")
       wait_for: host={{ item.public_ip }} port=22 delay=10 timeout=60
       with_items: "{{ gce.instance_data }}"
 
-    - name: Add host to groupname
+    - name: Add host to groupname ("{{ instances }}")
       add_host: hostname={{ item.public_ip }} groupname=new_instances
       with_items: "{{ gce.instance_data }}"
     
-    - name: Save host data
+    - name: Save host data ("{{ instances }}")
       add_host:
         hostname: "{{ item.public_ip }}"
         groupname: gce_instances

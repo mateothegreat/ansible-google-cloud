@@ -10,7 +10,17 @@
 
   tasks:
         
-    - name: ingress.streaming-platform.com A 35.224.16.183
+    - name: ingress.streaming-platform.com A 35.225.240.127
+      gcdns_record:
+        record: 'ingress.streaming-platform.com'
+        zone: 'streaming-platform.com'
+        type: A
+        ttl: 3600
+        overwrite: true
+        value: '35.225.240.127'
+        
+        
+    - name: win2016.streaming-platform.com A 35.224.16.183
       gcdns_record:
         record: 'ingress.streaming-platform.com'
         zone: 'streaming-platform.com'

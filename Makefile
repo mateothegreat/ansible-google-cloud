@@ -23,18 +23,24 @@ inventory/save:                     ; inventory/gce.py --pretty --refresh-cache 
 network/dns:                        ; ansible-playbook dns-records.yml
 network:                            ; ansible-playbook gce-network.yml
 
+local/setupdev:                     ; ansible-playbook localdevenv.yml
 ## Create new instance(s): make instances/create INSTANCES=mytest-1 mytest-2
-instances/create: guard-INSTANCES   ; ansible-playbook gce-instances-create.yml -e instances=$(INSTANCES)
+instances/create: guard-INSTANCES   ; @for I in $(INSTANCES); do ansible-playbook gce-instances-create.yml -e instances=$$I; done
+
 ## Change the state of an instance: make instances/state NAME=centos-1 STATE=started
 instances/state:  guard-STATE\
                   guard-NAME        ; ansible-playbook gce-instances-state.yml -e NAME="$(NAME)" -e STATE="$(STATE)"
+
 ## Start all instances in $INSTANCES: make instances/start INSTANCES=centos-1
-instances/start:                    ; for INSTANCE in $(INSTANCES); do $(MAKE) instances/state STATE=started NAME=$$INSTANCE; done
+instances/start:                    ; for I in $(INSTANCES); do $(MAKE) instances/state STATE=started NAME=$$I; done
+
 ## Stop all instances in $INSTANCES: make instances/start INSTANCES=centos-1
-instances/stop:                     ; for INSTANCE in $(INSTANCES); do $(MAKE) instances/state STATE=stopped NAME=$$INSTANCE; done
+instances/stop:                     ; for I in $(INSTANCES); do $(MAKE) instances/state STATE=stopped NAME=$$I; done
+
+## Delete all instances in $INSTANCES: make instances/delete INSTANCES=centos-1
+instances/delete: guard-INSTANCES   ; @for I in $(INSTANCES); do ansible-playbook gce-instances-delete.yml -e instances=$$I; done
 
 cleanup:
-
 
 	ansible-playbook gce-cleanup.yaml
 
